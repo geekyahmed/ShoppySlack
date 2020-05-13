@@ -1,12 +1,12 @@
 const config = {
   app:{
-    port : process.env.PORT || 300
+    port : process.env.PORT || 8000
   },
 
   db: {
     host:'localhost',
     port:27017,
-    name: 'db'
+    name: 'shoppyslack'
   }
 };
 
