@@ -6,6 +6,8 @@ const config = require('./config/configuration')
 const passport = require('passport')
 const mongoose = require('mongoose')
 const session  = require('express-session')
+const userController = require('./controllers/userController');
+const defaultController = require('./controllers/defaultController');
 const { db: { host, port, name} } = config
 const connectionString = `mongodb://${host}:${port}/${name}`
 
@@ -22,6 +24,10 @@ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology:t
     .catch(err => {
       console.log('MongoDB Database Connection Failed')
     });
+
+//Configuring Routes For Controllers
+    app.use('/', defaultController);
+    app.use('/user', userController)
 
 //Setting Up Express Session
 app.use(session({
