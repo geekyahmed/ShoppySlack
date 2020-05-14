@@ -7,6 +7,10 @@ const config = {
     host:'localhost',
     port:27017,
     name: 'shoppyslack'
+  },
+
+  globalVariables: (req, res, next)=>{
+
   }
 };
 

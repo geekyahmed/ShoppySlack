@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path')
 const hbs = require("express-handlebars")
 const config = require('./config/configuration')
 const passport = require('passport')
@@ -10,11 +11,13 @@ const connectionString = `mongodb://${host}:${port}/${name}`
 
 
 const app = express()
+app.use(express.static(path.join(__dirname, 'public')))
+
 
 //Configure MongoDB Database
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology:true })
     .then(response => {
-      console.log('MongoDB Database IS Running Successfully')
+      console.log('MongoDB Database Is Running Successfully')
     })
     .catch(err => {
       console.log('MongoDB Database Connection Failed')
