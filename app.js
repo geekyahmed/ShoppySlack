@@ -36,11 +36,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 //Configuring Handlebars For Views
-app.set('handlebars', hbs({defaultLayout: 'main' }));
-app.engine('view engine', handlebars)
+app.engine('handlebars', hbs({defaultLayout: 'default' }));
+app.set('view engine', 'handlebars')
 
 app.get('/', (req, res)=>{
-	res.send('Hello from the server side')
+	res.render('default/index')
 })
 
 app.listen(config.app.port, (req, res)=>{
