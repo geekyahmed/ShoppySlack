@@ -1,16 +1,18 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const path = require('path')
 const config = require('./config/configuration')
 const passport = require('passport')
 const mongoose = require('mongoose')
 const session  = require('express-session')
 const defaultController = require('./controllers/defaultController');
+const defaultRoutes =require('./routes/defaultRoutes');
 const { db: { host, port, name} } = config
 const connectionString = `mongodb://${host}:${port}/${name}`
-
-
 const app = express()
+
+//Configuring Express
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
 
@@ -36,15 +38,10 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-//Configure bodyParser
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-
 app.get('/', (req, res)=>{
 	res.send('<h1>Welcome To ShoppySlack API</h1>')
 })
 
-const defaultRoutes =require('./routes/defaultRoutes');
 app.use('/api', defaultRoutes);
 
 app.listen(config.app.port, (req, res)=>{
