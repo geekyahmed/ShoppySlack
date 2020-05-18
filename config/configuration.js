@@ -8,10 +8,6 @@ const config = {
     port:27017,
     name: 'shoppyslack'
   },
-
-  globalVariables: (req, res, next)=>{
-
-  }
 };
 
 module.exports = config;
