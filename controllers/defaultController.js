@@ -60,27 +60,16 @@ updateProduct: (req, res)=> {
       product.seller = req.body.seller,
       product.location= req.body.location,
       product.description= req.body.description
+
+      product.save()
+      .then(updatedProduct => {
+        res.json({status: "Updated"})
+      })
+      .catch(err => {
+        res.send('error: ' + err)
+      })
     },
-    Product.findOne({
-      name: req.body.name
-    })
-    .then(product => {
-      if (!product) {
-          Product.create()
-            .then(product => {
-              res.json({ status: product.name + ' has been updated' })
-            })
-            .catch(err => {
-              res.send('error: ' + err)
-            })
-        }
-      else {
-        res.json({ error: 'Product already exists' })
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
+
 )
 }
 }
