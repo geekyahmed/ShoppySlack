@@ -1,7 +1,7 @@
 {
   "name": "shoppyslack",
   "version": "1.0.0",
-  "description": "An",
+  "description": "A simple ecommerce api built with nodejs and mongoose",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
