@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
 const config = require('./config/configuration')
-const passport = require('passport')
 const mongoose = require('mongoose')
 const session  = require('express-session')
 const defaultController = require('./controllers/defaultController');
@@ -25,7 +24,6 @@ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology:t
       console.log('MongoDB Database Connection Failed')
     });
 
-//Configuring Routes For Controllers
 
 //Setting Up Express Session
 app.use(session({
@@ -34,9 +32,6 @@ app.use(session({
 	saveUninitialized: false
 }))
 
-//Configuring passport
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.get('/', (req, res)=>{
 	res.send('<h1>Welcome To ShoppySlack API</h1>')

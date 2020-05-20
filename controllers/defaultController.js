@@ -16,8 +16,9 @@ module.exports = {
     })
   },
 
-//Add Product Controller
+//Create Product Controller
   createProduct: (req, res)=>{
+
     const newProduct = new Product({
       name: req.body.name,
       tag: req.body.tag,
@@ -63,13 +64,27 @@ updateProduct: (req, res)=> {
 
       product.save()
       .then(updatedProduct => {
-        res.json({status: "Updated"})
+        res.json({status: "Product has been updated"})
       })
       .catch(err => {
-        res.send('error: ' + err)
+        res.json({status: "Error at" + err})
       })
     },
 
 )
+},
+
+//Delete Product Controller
+deleteProduct: (req, res)=> {
+
+  const id = req.params.id
+
+  Product.findByIdAndDelete(id)
+  .then(deletedProduct => {
+    res.status({status: 'Product has been deleted succesfully'})
+  })
+  .catch(err => {
+    res.json({status: "Error at" + err})
+  })
 }
 }
